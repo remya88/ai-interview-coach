@@ -1,0 +1,6 @@
+export const JOB_ANALYSIS_CONSTANTS = {
+  AI_MODEL: 'gpt-4o-mini',
+  MAX_TOKENS: 2000,
+  TEMPERATURE: 0.3,
+  MIN_JOB_DESCRIPTION_LENGTH: 50,
+} as const;
