@@ -25,12 +25,14 @@ import { MatChipsModule } from '@angular/material/chips';
     .chip-wrapper { margin-bottom: 8px; }
     .chip-title {
       font-size: 13px;
-      font-weight: 600;
-      color: #374151;
+      font-weight: 700;
+      color: #e2e8f0;
       margin: 0 0 8px;
+      letter-spacing: 0.01em;
     }
-    .empty-text { font-size: 13px; color: #9ca3af; }
-    mat-chip-set { display: flex; flex-wrap: wrap; gap: 4px; }
+    .empty-text { font-size: 13px; color: #94a3b8; }
+    mat-chip-set { display: flex; flex-wrap: wrap; gap: 6px; }
+    ::ng-deep .mdc-evolution-chip { border: 1px solid rgba(148, 163, 184, 0.18); }
   `],
 })
 export class SkillChipListComponent {

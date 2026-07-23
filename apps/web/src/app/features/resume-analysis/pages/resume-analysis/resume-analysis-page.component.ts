@@ -35,16 +35,22 @@ import { RecommendationCardComponent } from '../../components/recommendation-car
     <div class="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 px-4 py-8 text-slate-100">
       <div class="mx-auto flex max-w-6xl flex-col gap-6">
         <div class="rounded-3xl border border-cyan-400/20 bg-slate-900/70 p-6 shadow-2xl shadow-cyan-900/20 backdrop-blur">
-          <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex flex-wrap items-start justify-between gap-4">
             <div>
               <p class="text-xs uppercase tracking-[0.3em] text-cyan-300">Resume Analysis</p>
               <h1 class="mt-2 text-3xl font-black tracking-tight text-white sm:text-4xl">Resume insights</h1>
               <p class="mt-2 text-slate-300">{{ store.report()?.resume?.originalFilename }}</p>
             </div>
-            <button mat-stroked-button class="!border-cyan-400/40 !text-cyan-100" (click)="router.navigate(['/resume-analysis'])">
-              <mat-icon>arrow_back</mat-icon>
-              Back to uploads
-            </button>
+            <div class="ml-auto flex flex-wrap justify-end gap-2">
+              <button mat-stroked-button class="!border-cyan-400/40 !text-cyan-100" (click)="router.navigate(['/dashboard'])">
+                <mat-icon>dashboard</mat-icon>
+                Dashboard
+              </button>
+              <button mat-stroked-button class="!border-cyan-400/40 !text-cyan-100" (click)="router.navigate(['/resume-analysis'])">
+                <mat-icon>arrow_back</mat-icon>
+                Back to uploads
+              </button>
+            </div>
           </div>
         </div>
 

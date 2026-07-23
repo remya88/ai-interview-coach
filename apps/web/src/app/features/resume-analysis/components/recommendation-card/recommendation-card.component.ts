@@ -30,8 +30,12 @@ import { MatIconModule } from '@angular/material/icon';
   `,
   styles: [`
     .rec-card {
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      background: rgba(15, 23, 42, 0.74);
+      box-shadow: 0 20px 45px rgba(2, 6, 23, 0.32);
+      backdrop-filter: blur(16px);
+      color: #f8fafc;
     }
 
     mat-card-title {
@@ -39,7 +43,8 @@ import { MatIconModule } from '@angular/material/icon';
       align-items: center;
       gap: 10px;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
+      color: #f8fafc;
     }
 
     .rec-list {
@@ -53,7 +58,7 @@ import { MatIconModule } from '@angular/material/icon';
       align-items: flex-start;
       gap: 12px;
       padding: 10px 0;
-      border-bottom: 1px solid #f3f4f6;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.14);
 
       &:last-child { border-bottom: none; }
     }
@@ -62,8 +67,8 @@ import { MatIconModule } from '@angular/material/icon';
       min-width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: #eff6ff;
-      color: #3b82f6;
+      background: rgba(34, 211, 238, 0.16);
+      color: #67e8f9;
       font-size: 12px;
       font-weight: 700;
       display: flex;
@@ -74,12 +79,12 @@ import { MatIconModule } from '@angular/material/icon';
 
     .rec-text {
       font-size: 14px;
-      color: #374151;
+      color: #e2e8f0;
       line-height: 1.6;
     }
 
     .empty {
-      color: #9ca3af;
+      color: #94a3b8;
       font-size: 14px;
     }
   `],

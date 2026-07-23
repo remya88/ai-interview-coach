@@ -35,7 +35,8 @@ export class JobAnalysisService {
     if (!resume) throw new NotFoundException('Resume not found');
     if (resume.userId !== userId) throw new ForbiddenException('Access denied to this resume');
 
-    if (!resume.extractedText) {
+    const resumeText = this.extractResumeText(resume);
+    if (!resumeText) {
       throw new BadRequestException(
         'Resume has no extracted text. Please upload and analyze the resume first.',
       );
@@ -79,7 +80,7 @@ export class JobAnalysisService {
 
       // Run AI matching
       const matchResult = await this.runAiMatch(
-        resume.extractedText,
+        resumeText,
         dto.jobDescription,
         dto.jobTitle,
         dto.companyName,
@@ -162,6 +163,22 @@ export class JobAnalysisService {
       },
       orderBy: { createdAt: 'desc' },
     });
+  }
+
+  private extractResumeText(resume: { extractedText?: string | null; parsedData?: unknown }): string {
+    if (typeof resume.extractedText === 'string' && resume.extractedText.trim()) {
+      return resume.extractedText.trim();
+    }
+
+    if (resume.parsedData && typeof resume.parsedData === 'object') {
+      const parsedData = resume.parsedData as Record<string, unknown>;
+      const rawText = parsedData['rawText'];
+      if (typeof rawText === 'string' && rawText.trim()) {
+        return rawText.trim();
+      }
+    }
+
+    return '';
   }
 
   private async runAiMatch(

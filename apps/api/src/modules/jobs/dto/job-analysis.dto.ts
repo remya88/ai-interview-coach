@@ -5,24 +5,29 @@ import {
   MinLength,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
 
 export class JobMatchRequestDto {
   @ApiProperty({ description: 'Resume ID to match against the job' })
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
   @IsString()
   @IsNotEmpty()
   declare resumeId: string;
 
   @ApiProperty({ description: 'Job title' })
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
   @IsString()
   @IsNotEmpty()
   declare jobTitle: string;
 
   @ApiProperty({ description: 'Full job description text', minLength: 50 })
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
   @IsString()
   @MinLength(50)
   declare jobDescription: string;
 
   @ApiProperty({ required: false })
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
   @IsString()
   @IsOptional()
   companyName?: string;

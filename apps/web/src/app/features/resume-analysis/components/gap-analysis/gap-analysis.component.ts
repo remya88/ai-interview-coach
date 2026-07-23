@@ -37,23 +37,29 @@ import { SkillGap } from '../../models/resume.model';
   `,
   styles: [`
     .gap-card {
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      background: rgba(15, 23, 42, 0.74);
+      box-shadow: 0 20px 45px rgba(2, 6, 23, 0.32);
+      backdrop-filter: blur(16px);
+      color: #f8fafc;
     }
 
-    mat-card-title { font-size: 18px; font-weight: 600; }
+    mat-card-title { font-size: 18px; font-weight: 700; color: #f8fafc; }
 
     .gap-section {
       margin-bottom: 20px;
       padding: 16px;
-      border-radius: 8px;
+      border-radius: 12px;
+      background: rgba(2, 6, 23, 0.4);
+      border: 1px solid rgba(148, 163, 184, 0.16);
 
       h4 {
         display: flex;
         align-items: center;
         gap: 8px;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 700;
         margin: 0 0 12px;
       }
 
@@ -65,40 +71,38 @@ import { SkillGap } from '../../models/resume.model';
         li {
           padding: 4px 0;
           font-size: 14px;
+          color: #e2e8f0;
 
-          &::before { content: '• '; }
+          &::before { content: '• '; color: #38bdf8; }
         }
       }
     }
 
     .critical {
-      background: #fff1f2;
-      border-left: 3px solid #ef4444;
+      border-left: 3px solid #fb7185;
 
-      h4 { color: #dc2626; }
-      mat-icon { color: #ef4444; }
-      li { color: #7f1d1d; }
+      h4 { color: #fda4af; }
+      mat-icon { color: #fb7185; }
     }
 
     .optional {
-      background: #fffbeb;
-      border-left: 3px solid #f59e0b;
+      border-left: 3px solid #fbbf24;
 
-      h4 { color: #d97706; }
-      mat-icon { color: #f59e0b; }
-      li { color: #78350f; }
+      h4 { color: #fde68a; }
+      mat-icon { color: #fbbf24; }
     }
 
     .no-gap {
       display: flex;
       align-items: center;
       gap: 12px;
-      color: #059669;
+      color: #a7f3d0;
       padding: 16px;
-      background: #ecfdf5;
-      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      border-radius: 12px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
 
-      mat-icon { color: #10b981; }
+      mat-icon { color: #34d399; }
       p { margin: 0; font-weight: 600; }
     }
   `],

@@ -11,7 +11,6 @@ export class AuthService {
   constructor(private readonly http: HttpClient) {}
 
   register(payload: RegisterRequest): Observable<AuthResponse> {
-    alert('inside register method in AuthService');
     return this.http.post<AuthResponse>(`${this.apiUrl}/register`, payload).pipe(
       tap((response) => this.currentUser.set(response.user)),
     );
@@ -25,8 +24,14 @@ export class AuthService {
 
   logout(): Observable<{ message: string }> {
     return this.http.post<{ message: string }>(`${this.apiUrl}/logout`, {}).pipe(
-      tap(() => this.currentUser.set(null)),
+      tap(() => this.clearSession()),
     );
+  }
+
+  clearSession(): void {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    this.currentUser.set(null);
   }
 
   refreshToken(): Observable<{ accessToken: string; refreshToken: string }> {

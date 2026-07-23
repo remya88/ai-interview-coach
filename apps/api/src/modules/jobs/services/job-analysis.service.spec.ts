@@ -124,6 +124,37 @@ describe('JobAnalysisService', () => {
         service.matchResumeToJob('u-1', { ...mockJobDto, jobDescription: 'too short' }),
       ).rejects.toThrow(BadRequestException);
     });
+
+    it('should use parsed resume text when extractedText is missing', async () => {
+      mockPrisma.resume.findFirst.mockResolvedValue({
+        id: 'r-1',
+        userId: 'u-1',
+        extractedText: null,
+        parsedData: { rawText: 'John Doe\n5 years TypeScript Angular experience' },
+        aiSummary: 'Strong frontend background',
+      });
+      mockPrisma.jobDescription.upsert.mockResolvedValue({
+        id: 'jd-1',
+        jobTitle: 'Senior Frontend Engineer',
+        companyName: 'TechCorp',
+      });
+      mockPrisma.jobMatchAnalysis.deleteMany.mockResolvedValue({});
+      mockPrisma.jobMatchAnalysis.create.mockResolvedValue({
+        id: 'jm-1',
+        resumeId: 'r-1',
+        jobDescriptionId: 'jd-1',
+        matchPercentage: 82,
+        matchedSkills: ['TypeScript', 'Angular'],
+        missingSkills: ['Kubernetes'],
+        skillGap: { critical: ['Kubernetes'], optional: [] },
+        recommendations: ['Learn Kubernetes'],
+        interviewPreparationTips: ['Study system design'],
+        createdAt: new Date(),
+      });
+
+      const result = await service.matchResumeToJob('u-1', mockJobDto);
+      expect(result.matchPercentage).toBe(82);
+    });
   });
 
   describe('getMatchResult', () => {

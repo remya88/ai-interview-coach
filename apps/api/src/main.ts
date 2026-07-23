@@ -20,6 +20,7 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
       transform: true,
+      transformOptions: { enableImplicitConversion: true },
       exceptionFactory: (errors) => {
         const messages = errors.map((error) => {
           const constraints = error.constraints ? Object.values(error.constraints) : [];

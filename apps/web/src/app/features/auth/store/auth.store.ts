@@ -14,6 +14,12 @@ export class AuthStore {
     this.isAuthenticated.set(Boolean(user));
   }
 
+  clearAuth() {
+    this.setUser(null);
+    this.setError(null);
+    this.setLoading(false);
+  }
+
   setLoading(value: boolean) {
     this.isLoading.set(value);
   }
